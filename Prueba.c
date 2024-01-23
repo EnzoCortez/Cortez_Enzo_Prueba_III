@@ -68,3 +68,31 @@ int main()
 
     return 0;
 }
+
+
+// Función para ingresar la información de alumnos
+void ingresarAlumnos(struct alumno lista[], int n)
+{
+    for (int i = 0; i < n; i++)
+    {
+        // Solicitar información de cada alumno
+        printf("\nIngrese los datos del alumno %d:\n", i + 1);
+        printf("Matrícula: ");
+        scanf("%d", &lista[i].matricula);
+
+        printf("Nombre: ");
+        fflush(stdin);
+        fgets(lista[i].nombre, sizeof(lista[i].nombre), stdin);
+
+        printf("Dirección: ");
+        fflush(stdin);
+        fgets(lista[i].direccion, sizeof(lista[i].direccion), stdin);
+
+        printf("Materia: ");
+        fflush(stdin);
+        fgets(lista[i].materia, sizeof(lista[i].materia), stdin);
+
+        printf("Nota: ");
+        scanf("%f", &lista[i].nota);
+    }
+}
