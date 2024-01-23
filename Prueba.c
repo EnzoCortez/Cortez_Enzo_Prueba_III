@@ -115,3 +115,53 @@ void mostrarAlumnos(struct alumno lista[], int n)
         printf("Nota: %.2f\n", lista[i].nota);
     }
 }
+
+// Función para guardar los datos en un archivo de texto
+void guardarEnArchivo(struct alumno lista[], int n)
+{
+    FILE *archivo;
+    archivo = fopen("alumnos.txt", "w");
+
+    if (archivo == NULL)
+    {
+        printf("Error al abrir el archivo.\n");
+        return;
+    }
+
+    for (int i = 0; i < n; i++)
+    {
+        fprintf(archivo, "%d\n", lista[i].matricula);
+        fprintf(archivo, "%s", lista[i].nombre);
+        fprintf(archivo, "%s", lista[i].direccion);
+        fprintf(archivo, "%s", lista[i].materia);
+        fprintf(archivo, "%.2f\n", lista[i].nota);
+    }
+
+    fclose(archivo);
+    printf("Datos guardados en el archivo correctamente.\n");
+}
+
+// Función para leer los datos desde un archivo de texto
+void leerDesdeArchivo(struct alumno lista[], int n)
+{
+    FILE *archivo;
+    archivo = fopen("alumnos.txt", "r");
+
+    if (archivo == NULL)
+    {
+        printf("No se encontró el archivo. Creando uno nuevo.\n");
+        return;
+    }
+
+    for (int i = 0; i < n; i++)
+    {
+        fscanf(archivo, "%d", &lista[i].matricula);
+        fgets(lista[i].nombre, sizeof(lista[i].nombre), archivo);
+        fgets(lista[i].direccion, sizeof(lista[i].direccion), archivo);
+        fgets(lista[i].materia, sizeof(lista[i].materia), archivo);
+        fscanf(archivo, "%f", &lista[i].nota);
+    }
+
+    fclose(archivo);
+    printf("Datos cargados desde el archivo correctamente.\n");
+}
