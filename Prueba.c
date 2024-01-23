@@ -96,3 +96,22 @@ void ingresarAlumnos(struct alumno lista[], int n)
         scanf("%f", &lista[i].nota);
     }
 }
+
+// Función para mostrar la información de los alumnos
+void mostrarAlumnos(struct alumno lista[], int n)
+{
+    printf("\nLista de alumnos ingresados:\n");
+    for (int i = 0; i < n; i++)
+    {
+        // Mostrar información de cada alumno
+        printf("\nAlumno %d:\n", i + 1);
+        printf("Matrícula: %d\n", lista[i].matricula);
+        printf("Nombre: ");
+        puts(lista[i].nombre);
+        printf("Dirección: ");
+        puts(lista[i].direccion);
+        printf("Materia: ");
+        puts(lista[i].materia);
+        printf("Nota: %.2f\n", lista[i].nota);
+    }
+}
